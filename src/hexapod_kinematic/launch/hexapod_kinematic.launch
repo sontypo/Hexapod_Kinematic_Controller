@@ -1,0 +1,8 @@
+<launch>
+
+    <!-- Get Link State service -->
+    <node pkg="hexapod_kinematic" type="get_link_state.py" name="needed_data_for_ik_node" output="screen"/>
+    
+    <node pkg="hexapod_kinematic" type="hexapod_kinematic" name="kinematic_controller" output="screen"/>
+
+</launch>

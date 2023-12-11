@@ -1,0 +1,109 @@
+# Configuration Settings
+
+# Robot name space
+NAME_SPACE: "/hexa_haibot/"
+
+# Non teleop mode for naviagtion stack, Gazebo, etc type modes.
+# Controller will still have standup and sitdown functions for safty reasons 
+NON_TELEOP: false
+
+# Speed limit in Hz for the master loop rate
+MASTER_LOOP_RATE: 500
+
+# Static time division to convert cmd_vel into segments for controller loop
+VELOCITY_DIVISION: 0.033
+
+# Twist Max Values
+# Currently these are set from a topic echo of the "twist" message coming out of the locomotion node.
+MAX_METERS_PER_SEC: 0.1024
+MAX_RADIANS_PER_SEC: !degrees 20.944
+
+# Number of head segments
+# First segment would be yaw, second would be pitch
+NUMBER_OF_HEAD_SEGMENTS: 1
+
+# Number of Legs
+NUMBER_OF_LEGS: 6
+
+# Number of leg segments ( 3dof or 4dof )
+NUMBER_OF_LEG_SEGMENTS: 3
+
+# Define Initial Coxa Offsets in Radians ['leg_5', 'leg_3', 'leg_1', 'leg_6', 'leg_4', 'leg_2'] 
+# IK is solved in local space currently, hence the reason right and left have same angle offsets.
+INIT_COXA_ANGLE: [!degrees -45, !degrees 0.0, !degrees 45, !degrees -45, !degrees 0.0, !degrees 45]
+
+# Define distance in meters from coxa joint to the center ['leg_5', 'leg_3', 'leg_1', 'leg_6', 'leg_4', 'leg_2'] 
+# IK is solved in local space currently, hence the reason right and left have same distance values
+COXA_TO_CENTER_X: [-0.09, 0.0, 0.09, -0.09, 0.0, 0.09]
+COXA_TO_CENTER_Y: [0.064, 0.086, 0.064, 0.064, 0.086, 0.064]
+
+
+# Define Start Position Of Feet in meters from the coxa joint ['leg_5', 'leg_3', 'leg_1', 'leg_6', 'leg_4', 'leg_2'] 
+# Middle Legs is coxa axis to foot in meters
+# math to find positions of front and back legs POS_Y = Middle leg start position * cos(45 degrees) (0.707)
+# math to find positions of front and back legs POS_X = Middle leg start position * sin(45 degrees) (0.707)
+# IK is solved in local space currently, hence the reason right and left have same distance values
+# IRL parameters
+# INIT_FOOT_POS_X: [-0.2423, 0.0, 0.2423, -0.2423, 0.0, 0.2423]
+# INIT_FOOT_POS_Y: [0.2163, 0.2383, 0.2163, 0.2163, 0.2383, 0.2163]
+# INIT_FOOT_POS_Z: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05]
+
+# SIM parameters
+INIT_FOOT_POS_X: [-0.12115, 0.0, 0.12115, -0.12115, 0.0, 0.12115]
+INIT_FOOT_POS_Y: [0.10815, 0.15294, 0.10815, 0.10815, 0.15294, 0.10815]
+INIT_FOOT_POS_Z: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05]
+
+# Define Leg Measurements in meters
+COXA_LENGTH:   0.063
+FEMUR_LENGTH:  0.076
+TIBIA_LENGTH:  0.165
+
+# Body FK maximum rotation
+BODY_MAX_ROLL: !degrees 8
+BODY_MAX_PITCH: !degrees 8
+
+# Body Standing Height
+STANDING_BODY_HEIGHT: 0.09
+
+# Body auto levelling parameters
+MAX_BODY_ROLL_COMP: !degrees 12
+MAX_BODY_PITCH_COMP: !degrees 12
+COMPENSATE_INCREMENT: !degrees 0.01
+COMPENSATE_TO_WITHIN: !degrees 1
+
+# Cycle length is the number of periods the travel is divided into ( Gait Settings )
+CYCLE_LENGTH: 50
+
+# Leg lift height is the max distance in meters the foot is lifted off the ground in a full step ( Gait Settings )
+# If you set this to close to the total measurement of your femur and tibia the leg IK calculation might fail
+LEG_LIFT_HEIGHT: 0.04
+
+GAIT_STYLE: "TRIPOD"
+
+# Speed in Hz that the joints interpolate between gait poses
+INTERPOLATION_LOOP_RATE: 300
+
+# Dynamixel protocol to use
+PROTOCOL_VERSION: 2
+
+# Joint descriptions
+JOINTS: {
+    '0': {name: coxa_5_joint, sign: -1},
+    '1': {name: femur_5_joint, sign: 1},
+    '2': {name: tibia_5_joint, sign: 1},
+    '3': {name: coxa_3_joint, sign: -1},
+    '4': {name: femur_3_joint, sign: 1},
+    '5': {name: tibia_3_joint, sign: 1},
+    '6': {name: coxa_1_joint, sign: -1},
+    '7': {name: femur_1_joint, sign: 1},
+    '8': {name: tibia_1_joint, sign: 1},
+    '9': {name: coxa_6_joint, sign: 1},
+    '10': {name: femur_6_joint, sign: 1},
+    '11': {name: tibia_6_joint, sign: 1},
+    '12': {name: coxa_4_joint, sign: 1},
+    '13': {name: femur_4_joint, sign: 1},
+    '14': {name: tibia_4_joint, sign: 1},
+    '15': {name: coxa_2_joint, sign: 1},
+    '16': {name: femur_2_joint, sign: 1},
+    '17': {name: tibia_2_joint, sign: 1}
+}

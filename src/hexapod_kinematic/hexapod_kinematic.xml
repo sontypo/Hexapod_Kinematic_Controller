@@ -1,0 +1,9 @@
+<!-- hexapod_kinematic publisher -->
+<library path="lib/hexapod_kinematic">
+  <class name="hexapod_kinematic/hexapod_kinematic" type="hexapod_kinematic" 
+    base_class_type="node::Node">
+    <description>
+      Hexapod kinematic controller.
+    </description>
+  </class>
+</library>
